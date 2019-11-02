@@ -29,6 +29,7 @@ def renda_familiar_total():
 	ax.set_ylabel('Nota Geral', fontsize=14, labelpad=20)
 	
 	plt.tight_layout()
+	plt.ylim(40, None)
 	plt.show()
 
 

@@ -9,7 +9,7 @@ raw_dataset = pd.read_csv('../data/enade2017_ufcg.csv')
 
 dataset = raw_dataset.copy()
 
-def renda_total():
+def renda_familiar_total():
 	di = {'A': u'até\nR\$ 1.405,50',
 		  'B': 'R\$ 1.405,51\na\n R\$ 2.811,00',
 		  'C': 'R\$ 2.811,01\na\n R\$ 4.216,50',
@@ -22,15 +22,14 @@ def renda_total():
 	
 	plt.figure(figsize=(16, 9))
 		
-	ax = sns.boxplot(x='QE_I08', y='NT_GER', data=df, order=[di['A'],
-					 di['B'], di['C'], di['D'], di['E'], di['F'],
-					 di['G']], showmeans=True, meanprops={'marker': 'D',
-					 'markersize': 3,
-					 'markerfacecolor': 'white',
-					 'markeredgecolor': 'white'})
-	ax.set(xlabel = u'Renda Total da Família', ylabel = 'Nota Geral')
+	ax = sns.barplot(x='QE_I08', y='NT_GER', data=df, ci=None, order=[
+					 di['A'], di['B'], di['C'], di['D'], di['E'],
+					 di['F'], di['G']])
+	ax.set_xlabel('Renda Familiar Total', fontsize=14, labelpad=20)
+	ax.set_ylabel('Nota Geral', fontsize=14, labelpad=20)
 	
 	plt.tight_layout()
 	plt.show()
 
-renda_total()
+
+renda_familiar_total()

@@ -6,7 +6,8 @@ Este é um arquivo de script temporário.
 """
 
 import pandas as pd
-import seaborn as sns;
+import seaborn as sns
+import scipy.stats as stats
 import matplotlib.pyplot as plt
 
 raw_dataset = pd.read_csv('../data/enade2017_ufcg.csv')
@@ -79,6 +80,16 @@ def renda_familiar_total():
 	plt.ylim(40, None)
 	plt.show()
 
+def renda_familiar_total_ANOVA():  
+    df = dataset.pivot(columns='QE_I08',values='NT_GER')
+    print(stats.f_oneway(df[df['A'].notnull()]['A'],
+                         df[df['B'].notnull()]['B'],
+                         df[df['C'].notnull()]['C'],
+                         df[df['D'].notnull()]['D'],
+                         df[df['E'].notnull()]['E'],
+                         df[df['F'].notnull()]['F'],
+                         df[df['G'].notnull()]['G']))
+
 def escolarizacao_pai():
 	di = {'A': 'Nenhuma',
 		  'B': u'Ensino Fundamental:\n1ª a 4ª série',
@@ -126,5 +137,6 @@ def escolarizacao_mae():
 onde_com_quem_mora()
 estado_civil()
 renda_familiar_total()
+renda_familiar_total_ANOVA()
 escolarizacao_pai()
 escolarizacao_mae()

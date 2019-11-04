@@ -1,5 +1,9 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
+"""
+Spyder Editor
+
+Este é um arquivo de script temporário.
+"""
 
 import pandas as pd
 import seaborn as sns;
@@ -20,7 +24,7 @@ def renda_familiar_total():
 
 	df = dataset.replace({'QE_I08': di})
 
-	plt.figure(figsize=(16, 9))
+	plt.figure(figsize=(12, 8))
 
 	ax = sns.barplot(x='QE_I08', y='NT_GER', data=df, ci=None, order=[
 					 di['A'], di['B'], di['C'], di['D'], di['E'],
@@ -42,7 +46,7 @@ def escolarizacao_pai():
 
 	df = dataset.replace({'QE_I04': di})
 
-	plt.figure(figsize=(16, 9))
+	plt.figure(figsize=(12, 8))
 
 	ax = sns.barplot(x='QE_I04', y='NT_GER', data=df, ci=None, order=[
 					 di['A'], di['B'], di['C'], di['D'], di['E'],
@@ -64,7 +68,7 @@ def escolarizacao_mae():
 
 	df = dataset.replace({'QE_I05': di})
 
-	plt.figure(figsize=(16, 9))
+	plt.figure(figsize=(12, 8))
 
 	ax = sns.barplot(x='QE_I05', y='NT_GER', data=df, ci=None, order=[
 					 di['A'], di['B'], di['C'], di['D'], di['E'],

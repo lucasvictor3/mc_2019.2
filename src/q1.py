@@ -13,6 +13,26 @@ raw_dataset = pd.read_csv('../data/enade2017_ufcg.csv')
 
 dataset = raw_dataset.copy()
 
+def estado_civil():
+	di = {'A': 'Solteiro(a)',
+		  'B': 'Casado(a)',
+		  'C': 'Separado(a)\njudicialmente/divorciado(a)',
+		  'D': u'Viúvo(a)',
+		  'E': 'Outro'}
+
+	df = dataset.replace({'QE_I01': di})
+
+	plt.figure(figsize=(12, 8))
+
+	ax = sns.barplot(x='QE_I01', y='NT_GER', data=df, ci=None, order=[di['A'],
+                     di['B'], di['C'], di['D'], di['E']])
+	ax.set_xlabel('Estado Civil', fontsize=14, labelpad=20)
+	ax.set_ylabel('Nota Geral', fontsize=14, labelpad=20)
+
+	plt.tight_layout()
+	plt.ylim(30, None)
+	plt.show()
+
 def renda_familiar_total():
 	di = {'A': u'até\nR\$ 1.405,50',
 		  'B': 'R\$ 1.405,51\na\n R\$ 2.811,00',
@@ -80,6 +100,7 @@ def escolarizacao_mae():
 	plt.ylim(40, None)
 	plt.show()
 
+estado_civil()
 renda_familiar_total()
 escolarizacao_pai()
 escolarizacao_mae()

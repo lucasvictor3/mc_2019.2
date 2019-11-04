@@ -13,6 +13,29 @@ raw_dataset = pd.read_csv('../data/enade2017_ufcg.csv')
 
 dataset = raw_dataset.copy()
 
+def onde_com_quem_mora():
+	di = {'A': 'Casa ou apartamento\nsozinho',
+		  'B': 'Casa ou apartamento\ncom pais e/ou parentes',
+		  'C': 'Casa ou apartamento\ncom cônjuge e/ou filhos',
+		  'D': 'Casa ou apartamento\ncom outras pessoas\n(incluindo república)\
+',
+		  'E': 'Em alojamento\nuniversitário da\nprópria instituição',
+          'F': 'Em outros tipos de\nhabitação individual\nou coletiva\n(hotel,\
+ hospedaria,\npensão ou outro)'}
+
+	df = dataset.replace({'QE_I06': di})
+
+	plt.figure(figsize=(12, 8))
+
+	ax = sns.barplot(x='QE_I06', y='NT_GER', data=df, ci=None, order=[di['A'],
+                     di['B'], di['C'], di['D'], di['E'], di['F']])
+	ax.set_xlabel('Onde e com quem Mora', fontsize=14, labelpad=20)
+	ax.set_ylabel('Nota Geral', fontsize=14, labelpad=20)
+
+	plt.tight_layout()
+	plt.ylim(40, None)
+	plt.show()
+
 def estado_civil():
 	di = {'A': 'Solteiro(a)',
 		  'B': 'Casado(a)',
@@ -100,6 +123,7 @@ def escolarizacao_mae():
 	plt.ylim(40, None)
 	plt.show()
 
+onde_com_quem_mora()
 estado_civil()
 renda_familiar_total()
 escolarizacao_pai()

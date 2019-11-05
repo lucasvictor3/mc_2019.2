@@ -34,16 +34,16 @@ def estado_civil():
 	plt.ylim(30, None)
 	plt.show()
 
-def estado_civil_ANOVA():  
+def estado_civil_ANOVA():
     df = dataset.pivot(columns='QE_I01',values='NT_GER')
     F, p = stats.f_oneway(df[df['A'].notnull()]['A'],
                           df[df['B'].notnull()]['B'],
                           df[df['C'].notnull()]['C'],
                           df[df['D'].notnull()]['D'],
                           df[df['E'].notnull()]['E'])
-    
+
     print('Estado Civil ANOVA:\n\tP-Valor: %.16f' % p)
-    
+
 def onde_com_quem_mora():
 	di = {'A': 'Casa ou apartamento\nsozinho',
 		  'B': 'Casa ou apartamento\ncom pais e/ou parentes',
@@ -67,7 +67,7 @@ def onde_com_quem_mora():
 	plt.ylim(40, None)
 	plt.show()
 
-def onde_com_quem_mora_ANOVA():  
+def onde_com_quem_mora_ANOVA():
     df = dataset.pivot(columns='QE_I06',values='NT_GER')
     F, p = stats.f_oneway(df[df['A'].notnull()]['A'],
                           df[df['B'].notnull()]['B'],
@@ -75,7 +75,7 @@ def onde_com_quem_mora_ANOVA():
                           df[df['D'].notnull()]['D'],
                           df[df['E'].notnull()]['E'],
                           df[df['F'].notnull()]['F'])
-    
+
     print('Onde e com Quem Mora ANOVA:\n\tP-Valor: %.16f' % p)
 
 def renda_familiar_total():
@@ -101,7 +101,7 @@ def renda_familiar_total():
 	plt.ylim(40, None)
 	plt.show()
 
-def renda_familiar_total_ANOVA():  
+def renda_familiar_total_ANOVA():
     df = dataset.pivot(columns='QE_I08',values='NT_GER')
     F, p = stats.f_oneway(df[df['A'].notnull()]['A'],
                           df[df['B'].notnull()]['B'],
@@ -110,7 +110,7 @@ def renda_familiar_total_ANOVA():
                           df[df['E'].notnull()]['E'],
                           df[df['F'].notnull()]['F'],
                           df[df['G'].notnull()]['G'])
-    
+
     print('Renda Familiar Total ANOVA:\n\tP-Valor: %.16f' % p)
 
 def escolarizacao_pai():
@@ -135,7 +135,7 @@ def escolarizacao_pai():
 	plt.ylim(40, None)
 	plt.show()
 
-def escolarizacao_pai_ANOVA():  
+def escolarizacao_pai_ANOVA():
     df = dataset.pivot(columns='QE_I04',values='NT_GER')
     F, p = stats.f_oneway(df[df['A'].notnull()]['A'],
                           df[df['B'].notnull()]['B'],
@@ -143,7 +143,7 @@ def escolarizacao_pai_ANOVA():
                           df[df['D'].notnull()]['D'],
                           df[df['E'].notnull()]['E'],
                           df[df['F'].notnull()]['F'])
-    
+
     print('Escolarização do Pai ANOVA:\n\tP-Valor: %.16f' % p)
 
 def escolarizacao_mae():
@@ -168,7 +168,7 @@ def escolarizacao_mae():
 	plt.ylim(40, None)
 	plt.show()
 
-def escolarizacao_mae_ANOVA():  
+def escolarizacao_mae_ANOVA():
     df = dataset.pivot(columns='QE_I05',values='NT_GER')
     F, p = stats.f_oneway(df[df['A'].notnull()]['A'],
                           df[df['B'].notnull()]['B'],
@@ -176,7 +176,7 @@ def escolarizacao_mae_ANOVA():
                           df[df['D'].notnull()]['D'],
                           df[df['E'].notnull()]['E'],
                           df[df['F'].notnull()]['F'])
-    
+
     print('Escolarização da Mãe ANOVA:\n\tP-Valor: %.16f' % p)
 
 estado_civil()

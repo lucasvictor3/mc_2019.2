@@ -27,8 +27,8 @@ def estado_civil():
 
 	ax = sns.barplot(x='QE_I01', y='NT_GER', data=df, ci=None, order=[di['A'],
                      di['B'], di['C'], di['D'], di['E']])
-	ax.set_xlabel('Estado Civil', fontsize=14, labelpad=20)
-	ax.set_ylabel('Nota Geral', fontsize=14, labelpad=20)
+	ax.set_xlabel('Estado civil', fontsize=14, labelpad=20)
+	ax.set_ylabel('Nota geral', fontsize=14, labelpad=20)
 
 	plt.tight_layout()
 	plt.ylim(30, None)
@@ -42,7 +42,7 @@ def estado_civil_ANOVA():
                           df[df['D'].notnull()]['D'],
                           df[df['E'].notnull()]['E'])
 
-    print('Estado Civil ANOVA:\n\tP-Valor: %.16f' % p)
+    print('Estado civil ANOVA:\n\tP-Valor: %.16f' % p)
 
 def escolarizacao_pai():
 	di = {'A': 'Nenhuma',
@@ -59,8 +59,8 @@ def escolarizacao_pai():
 	ax = sns.barplot(x='QE_I04', y='NT_GER', data=df, ci=None, order=[
 					 di['A'], di['B'], di['C'], di['D'], di['E'],
 					 di['F']])
-	ax.set_xlabel(u'Escolarização do Pai', fontsize=14, labelpad=20)
-	ax.set_ylabel('Nota Geral', fontsize=14, labelpad=20)
+	ax.set_xlabel(u'Escolarização do pai', fontsize=14, labelpad=20)
+	ax.set_ylabel('Nota geral', fontsize=14, labelpad=20)
 
 	plt.tight_layout()
 	plt.ylim(40, None)
@@ -75,7 +75,7 @@ def escolarizacao_pai_ANOVA():
                           df[df['E'].notnull()]['E'],
                           df[df['F'].notnull()]['F'])
 
-    print('Escolarização do Pai ANOVA:\n\tP-Valor: %.16f' % p)
+    print('Escolarização do pai ANOVA:\n\tP-Valor: %.16f' % p)
 
 def escolarizacao_mae():
 	di = {'A': 'Nenhuma',
@@ -92,8 +92,8 @@ def escolarizacao_mae():
 	ax = sns.barplot(x='QE_I05', y='NT_GER', data=df, ci=None, order=[
 					 di['A'], di['B'], di['C'], di['D'], di['E'],
 					 di['F']])
-	ax.set_xlabel(u'Escolarização da Mãe', fontsize=14, labelpad=20)
-	ax.set_ylabel('Nota Geral', fontsize=14, labelpad=20)
+	ax.set_xlabel(u'Escolarização da mãe', fontsize=14, labelpad=20)
+	ax.set_ylabel('Nota geral', fontsize=14, labelpad=20)
 
 	plt.tight_layout()
 	plt.ylim(40, None)
@@ -108,7 +108,7 @@ def escolarizacao_mae_ANOVA():
                           df[df['E'].notnull()]['E'],
                           df[df['F'].notnull()]['F'])
 
-    print('Escolarização da Mãe ANOVA:\n\tP-Valor: %.16f' % p)
+    print('Escolarização da mãe ANOVA:\n\tP-Valor: %.16f' % p)
 
 def renda_familiar_total():
 	di = {'A': u'até\nR\$ 1.405,50',
@@ -126,8 +126,8 @@ def renda_familiar_total():
 	ax = sns.barplot(x='QE_I08', y='NT_GER', data=df, ci=None, order=[
 					 di['A'], di['B'], di['C'], di['D'], di['E'],
 					 di['F'], di['G']])
-	ax.set_xlabel('Renda Familiar Total', fontsize=14, labelpad=20)
-	ax.set_ylabel('Nota Geral', fontsize=14, labelpad=20)
+	ax.set_xlabel('Renda familiar total', fontsize=14, labelpad=20)
+	ax.set_ylabel('Nota geral', fontsize=14, labelpad=20)
 
 	plt.tight_layout()
 	plt.ylim(40, None)
@@ -143,7 +143,7 @@ def renda_familiar_total_ANOVA():
                           df[df['F'].notnull()]['F'],
                           df[df['G'].notnull()]['G'])
 
-    print('Renda Familiar Total ANOVA:\n\tP-Valor: %.16f' % p)
+    print('Renda familiar total ANOVA:\n\tP-Valor: %.16f' % p)
 
 def onde_com_quem_mora():
 	di = {'A': 'Casa ou apartamento\nsozinho',
@@ -161,8 +161,8 @@ def onde_com_quem_mora():
 
 	ax = sns.barplot(x='QE_I06', y='NT_GER', data=df, ci=None, order=[di['A'],
                      di['B'], di['C'], di['D'], di['E'], di['F']])
-	ax.set_xlabel('Onde e com quem Mora', fontsize=14, labelpad=20)
-	ax.set_ylabel('Nota Geral', fontsize=14, labelpad=20)
+	ax.set_xlabel('Onde e com quem mora', fontsize=14, labelpad=20)
+	ax.set_ylabel('Nota geral', fontsize=14, labelpad=20)
 
 	plt.tight_layout()
 	plt.ylim(40, None)
@@ -177,7 +177,7 @@ def onde_com_quem_mora_ANOVA():
                           df[df['E'].notnull()]['E'],
                           df[df['F'].notnull()]['F'])
 
-    print('Onde e com Quem Mora ANOVA:\n\tP-Valor: %.16f' % p)
+    print('Onde e com quem mora ANOVA:\n\tP-Valor: %.16f' % p)
 
 def com_quantas_pessoas_mora():
 	di = {'A': 'Nenhuma',
@@ -196,12 +196,25 @@ def com_quantas_pessoas_mora():
 	ax = sns.barplot(x='QE_I07', y='NT_GER', data=df, ci=None, order=[di['A'],
                      di['B'], di['C'], di['D'], di['E'], di['F'], di['G'],
                      di['H']])
-	ax.set_xlabel('Com Quantas Pessoas Mora', fontsize=14, labelpad=20)
-	ax.set_ylabel('Nota Geral', fontsize=14, labelpad=20)
+	ax.set_xlabel('Com quantas pessoas mora', fontsize=14, labelpad=20)
+	ax.set_ylabel('Nota geral', fontsize=14, labelpad=20)
 
 	plt.tight_layout()
 	plt.ylim(40, None)
 	plt.show()
+
+def com_quantas_pessoas_mora_ANOVA():
+    df = dataset.pivot(columns='QE_I07',values='NT_GER')
+    F, p = stats.f_oneway(df[df['A'].notnull()]['A'],
+                          df[df['B'].notnull()]['B'],
+                          df[df['C'].notnull()]['C'],
+                          df[df['D'].notnull()]['D'],
+                          df[df['E'].notnull()]['E'],
+                          df[df['F'].notnull()]['F'],
+                          df[df['G'].notnull()]['G'],
+                          df[df['H'].notnull()]['H'])
+
+    print('Com quantas pessoas mora ANOVA:\n\tP-Valor: %.16f' % p)
 
 estado_civil()
 estado_civil_ANOVA()
@@ -214,3 +227,4 @@ onde_com_quem_mora_ANOVA()
 renda_familiar_total()
 renda_familiar_total_ANOVA()
 com_quantas_pessoas_mora()
+com_quantas_pessoas_mora_ANOVA()

@@ -179,6 +179,30 @@ def onde_com_quem_mora_ANOVA():
 
     print('Onde e com Quem Mora ANOVA:\n\tP-Valor: %.16f' % p)
 
+def com_quantas_pessoas_mora():
+	di = {'A': 'Nenhuma',
+		  'B': 'Uma',
+		  'C': 'Duas',
+		  'D': 'Três',
+		  'E': 'Quatro',
+          'F': 'Cinco',
+          'G': 'Seis',
+          'H': 'Sete ou mais'}
+
+	df = dataset.replace({'QE_I07': di})
+
+	plt.figure(figsize=(12, 8))
+
+	ax = sns.barplot(x='QE_I07', y='NT_GER', data=df, ci=None, order=[di['A'],
+                     di['B'], di['C'], di['D'], di['E'], di['F'], di['G'],
+                     di['H']])
+	ax.set_xlabel('Com Quantas Pessoas Mora', fontsize=14, labelpad=20)
+	ax.set_ylabel('Nota Geral', fontsize=14, labelpad=20)
+
+	plt.tight_layout()
+	plt.ylim(40, None)
+	plt.show()
+
 estado_civil()
 estado_civil_ANOVA()
 escolarizacao_pai()
@@ -189,3 +213,4 @@ onde_com_quem_mora()
 onde_com_quem_mora_ANOVA()
 renda_familiar_total()
 renda_familiar_total_ANOVA()
+com_quantas_pessoas_mora()

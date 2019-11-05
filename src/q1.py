@@ -14,6 +14,36 @@ raw_dataset = pd.read_csv('../data/enade2017_ufcg.csv')
 
 dataset = raw_dataset.copy()
 
+def estado_civil():
+	di = {'A': 'Solteiro(a)',
+		  'B': 'Casado(a)',
+		  'C': 'Separado(a)\njudicialmente/divorciado(a)',
+		  'D': u'Viúvo(a)',
+		  'E': 'Outro'}
+
+	df = dataset.replace({'QE_I01': di})
+
+	plt.figure(figsize=(12, 8))
+
+	ax = sns.barplot(x='QE_I01', y='NT_GER', data=df, ci=None, order=[di['A'],
+                     di['B'], di['C'], di['D'], di['E']])
+	ax.set_xlabel('Estado Civil', fontsize=14, labelpad=20)
+	ax.set_ylabel('Nota Geral', fontsize=14, labelpad=20)
+
+	plt.tight_layout()
+	plt.ylim(30, None)
+	plt.show()
+
+def estado_civil_ANOVA():  
+    df = dataset.pivot(columns='QE_I01',values='NT_GER')
+    F, p = stats.f_oneway(df[df['A'].notnull()]['A'],
+                          df[df['B'].notnull()]['B'],
+                          df[df['C'].notnull()]['C'],
+                          df[df['D'].notnull()]['D'],
+                          df[df['E'].notnull()]['E'])
+    
+    print('Estado Civil ANOVA:\n\tP-Valor: %.16f' % p)
+    
 def onde_com_quem_mora():
 	di = {'A': 'Casa ou apartamento\nsozinho',
 		  'B': 'Casa ou apartamento\ncom pais e/ou parentes',
@@ -37,25 +67,16 @@ def onde_com_quem_mora():
 	plt.ylim(40, None)
 	plt.show()
 
-def estado_civil():
-	di = {'A': 'Solteiro(a)',
-		  'B': 'Casado(a)',
-		  'C': 'Separado(a)\njudicialmente/divorciado(a)',
-		  'D': u'Viúvo(a)',
-		  'E': 'Outro'}
-
-	df = dataset.replace({'QE_I01': di})
-
-	plt.figure(figsize=(12, 8))
-
-	ax = sns.barplot(x='QE_I01', y='NT_GER', data=df, ci=None, order=[di['A'],
-                     di['B'], di['C'], di['D'], di['E']])
-	ax.set_xlabel('Estado Civil', fontsize=14, labelpad=20)
-	ax.set_ylabel('Nota Geral', fontsize=14, labelpad=20)
-
-	plt.tight_layout()
-	plt.ylim(30, None)
-	plt.show()
+def onde_com_quem_mora_ANOVA():  
+    df = dataset.pivot(columns='QE_I06',values='NT_GER')
+    F, p = stats.f_oneway(df[df['A'].notnull()]['A'],
+                          df[df['B'].notnull()]['B'],
+                          df[df['C'].notnull()]['C'],
+                          df[df['D'].notnull()]['D'],
+                          df[df['E'].notnull()]['E'],
+                          df[df['F'].notnull()]['F'])
+    
+    print('Onde e com Quem Mora ANOVA:\n\tP-Valor: %.16f' % p)
 
 def renda_familiar_total():
 	di = {'A': u'até\nR\$ 1.405,50',
@@ -147,10 +168,24 @@ def escolarizacao_mae():
 	plt.ylim(40, None)
 	plt.show()
 
-onde_com_quem_mora()
+def escolarizacao_mae_ANOVA():  
+    df = dataset.pivot(columns='QE_I05',values='NT_GER')
+    F, p = stats.f_oneway(df[df['A'].notnull()]['A'],
+                          df[df['B'].notnull()]['B'],
+                          df[df['C'].notnull()]['C'],
+                          df[df['D'].notnull()]['D'],
+                          df[df['E'].notnull()]['E'],
+                          df[df['F'].notnull()]['F'])
+    
+    print('Escolarização da Mãe ANOVA:\n\tP-Valor: %.16f' % p)
+
 estado_civil()
+estado_civil_ANOVA()
+onde_com_quem_mora()
+onde_com_quem_mora_ANOVA()
 renda_familiar_total()
 renda_familiar_total_ANOVA()
 escolarizacao_pai()
 escolarizacao_pai_ANOVA()
 escolarizacao_mae()
+escolarizacao_mae_ANOVA()

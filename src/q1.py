@@ -82,13 +82,15 @@ def renda_familiar_total():
 
 def renda_familiar_total_ANOVA():  
     df = dataset.pivot(columns='QE_I08',values='NT_GER')
-    print(stats.f_oneway(df[df['A'].notnull()]['A'],
-                         df[df['B'].notnull()]['B'],
-                         df[df['C'].notnull()]['C'],
-                         df[df['D'].notnull()]['D'],
-                         df[df['E'].notnull()]['E'],
-                         df[df['F'].notnull()]['F'],
-                         df[df['G'].notnull()]['G']))
+    F, p = stats.f_oneway(df[df['A'].notnull()]['A'],
+                          df[df['B'].notnull()]['B'],
+                          df[df['C'].notnull()]['C'],
+                          df[df['D'].notnull()]['D'],
+                          df[df['E'].notnull()]['E'],
+                          df[df['F'].notnull()]['F'],
+                          df[df['G'].notnull()]['G'])
+    
+    print('Renda Familiar Total ANOVA:\n\tP-Valor: %.16f' % p)
 
 def escolarizacao_pai():
 	di = {'A': 'Nenhuma',

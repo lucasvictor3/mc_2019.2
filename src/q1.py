@@ -114,6 +114,17 @@ def escolarizacao_pai():
 	plt.ylim(40, None)
 	plt.show()
 
+def escolarizacao_pai_ANOVA():  
+    df = dataset.pivot(columns='QE_I04',values='NT_GER')
+    F, p = stats.f_oneway(df[df['A'].notnull()]['A'],
+                          df[df['B'].notnull()]['B'],
+                          df[df['C'].notnull()]['C'],
+                          df[df['D'].notnull()]['D'],
+                          df[df['E'].notnull()]['E'],
+                          df[df['F'].notnull()]['F'])
+    
+    print('Escolarização do Pai ANOVA:\n\tP-Valor: %.16f' % p)
+
 def escolarizacao_mae():
 	di = {'A': 'Nenhuma',
 		  'B': u'Ensino Fundamental:\n1ª a 4ª série',
@@ -141,4 +152,5 @@ estado_civil()
 renda_familiar_total()
 renda_familiar_total_ANOVA()
 escolarizacao_pai()
+escolarizacao_pai_ANOVA()
 escolarizacao_mae()

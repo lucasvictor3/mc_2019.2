@@ -18,7 +18,7 @@ def estado_civil():
 	di = {'A': 'Solteiro(a)',
 		  'B': 'Casado(a)',
 		  'C': 'Separado(a)\njudicialmente/divorciado(a)',
-		  'D': u'Viúvo(a)',
+		  'D': 'Viúvo(a)',
 		  'E': 'Outro'}
 
 	df = dataset.replace({'QE_I01': di})
@@ -44,13 +44,45 @@ def estado_civil_ANOVA():
 
     print('Estado civil ANOVA:\n\tP-Valor: %.16f' % p)
 
+def cor_raca():
+	di = {'A': 'Branca',
+		  'B': 'Preta',
+		  'C': 'Amarela',
+		  'D': 'Parda',
+		  'E': 'Indígena',
+          'F': 'Não quero declarar'}
+
+	df = dataset.replace({'QE_I02': di})
+
+	plt.figure(figsize=(12, 8))
+
+	ax = sns.barplot(x='QE_I02', y='NT_GER', data=df, ci=None, order=[di['A'],
+                     di['B'], di['C'], di['D'], di['E'], di['F']])
+	ax.set_xlabel('Cor/raça', fontsize=14, labelpad=20)
+	ax.set_ylabel('Nota geral', fontsize=14, labelpad=20)
+
+	plt.tight_layout()
+	plt.ylim(30, None)
+	plt.show()
+
+def cor_raca_ANOVA():
+    df = dataset.pivot(columns='QE_I02',values='NT_GER')
+    F, p = stats.f_oneway(df[df['A'].notnull()]['A'],
+                          df[df['B'].notnull()]['B'],
+                          df[df['C'].notnull()]['C'],
+                          df[df['D'].notnull()]['D'],
+                          df[df['E'].notnull()]['E'],
+                          df[df['F'].notnull()]['F'])
+
+    print('Cor/raça ANOVA:\n\tP-Valor: %.16f' % p)
+
 def escolarizacao_pai():
 	di = {'A': 'Nenhuma',
-		  'B': u'Ensino Fundamental:\n1ª a 4ª série',
-		  'C': u'Ensino Fundamental:\n5ª a 8ª série',
-		  'D': u'Ensino Médio',
-		  'E': u'Ensino Superior - Graduação',
-		  'F': u'Pós-graduação'}
+		  'B': 'Ensino Fundamental:\n1ª a 4ª série',
+		  'C': 'Ensino Fundamental:\n5ª a 8ª série',
+		  'D': 'Ensino Médio',
+		  'E': 'Ensino Superior - Graduação',
+		  'F': 'Pós-graduação'}
 
 	df = dataset.replace({'QE_I04': di})
 
@@ -59,7 +91,7 @@ def escolarizacao_pai():
 	ax = sns.barplot(x='QE_I04', y='NT_GER', data=df, ci=None, order=[
 					 di['A'], di['B'], di['C'], di['D'], di['E'],
 					 di['F']])
-	ax.set_xlabel(u'Escolarização do pai', fontsize=14, labelpad=20)
+	ax.set_xlabel('Escolarização do pai', fontsize=14, labelpad=20)
 	ax.set_ylabel('Nota geral', fontsize=14, labelpad=20)
 
 	plt.tight_layout()
@@ -79,11 +111,11 @@ def escolarizacao_pai_ANOVA():
 
 def escolarizacao_mae():
 	di = {'A': 'Nenhuma',
-		  'B': u'Ensino Fundamental:\n1ª a 4ª série',
-		  'C': u'Ensino Fundamental:\n5ª a 8ª série',
-		  'D': u'Ensino Médio',
-		  'E': u'Ensino Superior - Graduação',
-		  'F': u'Pós-graduação'}
+		  'B': 'Ensino Fundamental:\n1ª a 4ª série',
+		  'C': 'Ensino Fundamental:\n5ª a 8ª série',
+		  'D': 'Ensino Médio',
+		  'E': 'Ensino Superior - Graduação',
+		  'F': 'Pós-graduação'}
 
 	df = dataset.replace({'QE_I05': di})
 
@@ -92,7 +124,7 @@ def escolarizacao_mae():
 	ax = sns.barplot(x='QE_I05', y='NT_GER', data=df, ci=None, order=[
 					 di['A'], di['B'], di['C'], di['D'], di['E'],
 					 di['F']])
-	ax.set_xlabel(u'Escolarização da mãe', fontsize=14, labelpad=20)
+	ax.set_xlabel('Escolarização da mãe', fontsize=14, labelpad=20)
 	ax.set_ylabel('Nota geral', fontsize=14, labelpad=20)
 
 	plt.tight_layout()
@@ -111,7 +143,7 @@ def escolarizacao_mae_ANOVA():
     print('Escolarização da mãe ANOVA:\n\tP-Valor: %.16f' % p)
 
 def renda_familiar_total():
-	di = {'A': u'até\nR\$ 1.405,50',
+	di = {'A': 'até\nR\$ 1.405,50',
 		  'B': 'R\$ 1.405,51\na\n R\$ 2.811,00',
 		  'C': 'R\$ 2.811,01\na\n R\$ 4.216,50',
 		  'D': 'R\$ 4.216,51\na\n R\$ 5.622,00',
@@ -218,6 +250,8 @@ def com_quantas_pessoas_mora_ANOVA():
 
 estado_civil()
 estado_civil_ANOVA()
+cor_raca()
+cor_raca_ANOVA()
 escolarizacao_pai()
 escolarizacao_pai_ANOVA()
 escolarizacao_mae()

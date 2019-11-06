@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-Spyder Editor
-
-Este é um arquivo de script temporário.
+A nota geral do aluno no ENADE é influenciada por características
+socioeconômicas do aluno (contidas no questionário do estudante)? (correlação
+e/ou regressão)
 """
 
 import pandas as pd

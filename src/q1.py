@@ -17,13 +17,13 @@ dataset = raw_dataset.copy()
 def estado_civil():
 	di = {'A': 'Solteiro(a)',
 		  'B': 'Casado(a)',
-		  'C': 'Separado(a)\njudicialmente/divorciado(a)',
+		  'C': 'Separado(a)\njudicialmente\n/\ndivorciado(a)',
 		  'D': 'Viúvo(a)',
 		  'E': 'Outro'}
 
 	df = dataset.replace({'QE_I01': di})
 
-	plt.figure(figsize=(12, 8))
+	plt.figure(figsize=(8, 4))
 
 	ax = sns.barplot(x='QE_I01', y='NT_GER', data=df, ci=None, order=[di['A'],
                      di['B'], di['C'], di['D'], di['E']])
@@ -50,11 +50,11 @@ def cor_raca():
 		  'C': 'Amarela',
 		  'D': 'Parda',
 		  'E': 'Indígena',
-          'F': 'Não quero declarar'}
+          'F': 'Não quero\ndeclarar'}
 
 	df = dataset.replace({'QE_I02': di})
 
-	plt.figure(figsize=(12, 8))
+	plt.figure(figsize=(6, 4))
 
 	ax = sns.barplot(x='QE_I02', y='NT_GER', data=df, ci=None, order=[di['A'],
                      di['B'], di['C'], di['D'], di['E'], di['F']])
@@ -78,15 +78,15 @@ def cor_raca_ANOVA():
 
 def escolarizacao_pai():
 	di = {'A': 'Nenhuma',
-		  'B': 'Ensino Fundamental:\n1ª a 4ª série',
-		  'C': 'Ensino Fundamental:\n5ª a 8ª série',
+		  'B': '1ª a 4ª série',
+		  'C': '5ª a 8ª série',
 		  'D': 'Ensino Médio',
-		  'E': 'Ensino Superior - Graduação',
+		  'E': 'Graduação',
 		  'F': 'Pós-graduação'}
 
 	df = dataset.replace({'QE_I04': di})
 
-	plt.figure(figsize=(12, 8))
+	plt.figure(figsize=(8, 4))
 
 	ax = sns.barplot(x='QE_I04', y='NT_GER', data=df, ci=None, order=[
 					 di['A'], di['B'], di['C'], di['D'], di['E'],
@@ -111,15 +111,15 @@ def escolarizacao_pai_ANOVA():
 
 def escolarizacao_mae():
 	di = {'A': 'Nenhuma',
-		  'B': 'Ensino Fundamental:\n1ª a 4ª série',
-		  'C': 'Ensino Fundamental:\n5ª a 8ª série',
+		  'B': '1ª a 4ª série',
+		  'C': '5ª a 8ª série',
 		  'D': 'Ensino Médio',
-		  'E': 'Ensino Superior - Graduação',
+		  'E': 'Graduação',
 		  'F': 'Pós-graduação'}
 
 	df = dataset.replace({'QE_I05': di})
 
-	plt.figure(figsize=(12, 8))
+	plt.figure(figsize=(8, 4))
 
 	ax = sns.barplot(x='QE_I05', y='NT_GER', data=df, ci=None, order=[
 					 di['A'], di['B'], di['C'], di['D'], di['E'],
@@ -144,16 +144,16 @@ def escolarizacao_mae_ANOVA():
 
 def renda_familiar_total():
 	di = {'A': 'até\nR\$ 1.405,50',
-		  'B': 'R\$ 1.405,51\na\n R\$ 2.811,00',
-		  'C': 'R\$ 2.811,01\na\n R\$ 4.216,50',
-		  'D': 'R\$ 4.216,51\na\n R\$ 5.622,00',
-		  'E': 'R\$ 5.622,01\na\n R\$ 9.370,00',
-		  'F': 'R\$ 9.370,01\na\n R\$ 28.110,00',
-		  'G': 'mais de\n R\$ 28.110,00'}
+		  'B': 'R\$1.405,51\na\n R\$2.811,00',
+		  'C': 'R\$2.811,01\na\n R\$4.216,50',
+		  'D': 'R\$4.216,51\na\n R\$5.622,00',
+		  'E': 'R\$5.622,01\na\n R\$9.370,00',
+		  'F': 'R\$9.370,01\na\n R\$28.110,00',
+		  'G': 'mais de\n R\$28.110,00'}
 
 	df = dataset.replace({'QE_I08': di})
 
-	plt.figure(figsize=(12, 8))
+	plt.figure(figsize=(8, 4))
 
 	ax = sns.barplot(x='QE_I08', y='NT_GER', data=df, ci=None, order=[
 					 di['A'], di['B'], di['C'], di['D'], di['E'],
@@ -177,40 +177,6 @@ def renda_familiar_total_ANOVA():
 
     print('Renda familiar total ANOVA:\n\tP-Valor: %.16f' % p)
 
-def onde_com_quem_mora():
-	di = {'A': 'Casa ou apartamento\nsozinho',
-		  'B': 'Casa ou apartamento\ncom pais e/ou parentes',
-		  'C': 'Casa ou apartamento\ncom cônjuge e/ou filhos',
-		  'D': 'Casa ou apartamento\ncom outras pessoas\n(incluindo república)\
-',
-		  'E': 'Em alojamento\nuniversitário da\nprópria instituição',
-          'F': 'Em outros tipos de\nhabitação individual\nou coletiva\n(hotel,\
- hospedaria,\npensão ou outro)'}
-
-	df = dataset.replace({'QE_I06': di})
-
-	plt.figure(figsize=(12, 8))
-
-	ax = sns.barplot(x='QE_I06', y='NT_GER', data=df, ci=None, order=[di['A'],
-                     di['B'], di['C'], di['D'], di['E'], di['F']])
-	ax.set_xlabel('Onde e com quem mora', fontsize=14, labelpad=20)
-	ax.set_ylabel('Nota geral', fontsize=14, labelpad=20)
-
-	plt.tight_layout()
-	plt.ylim(40, None)
-	plt.show()
-
-def onde_com_quem_mora_ANOVA():
-    df = dataset.pivot(columns='QE_I06',values='NT_GER')
-    F, p = stats.f_oneway(df[df['A'].notnull()]['A'],
-                          df[df['B'].notnull()]['B'],
-                          df[df['C'].notnull()]['C'],
-                          df[df['D'].notnull()]['D'],
-                          df[df['E'].notnull()]['E'],
-                          df[df['F'].notnull()]['F'])
-
-    print('Onde e com quem mora ANOVA:\n\tP-Valor: %.16f' % p)
-
 def com_quantas_pessoas_mora():
 	di = {'A': 'Nenhuma',
 		  'B': 'Uma',
@@ -219,11 +185,11 @@ def com_quantas_pessoas_mora():
 		  'E': 'Quatro',
           'F': 'Cinco',
           'G': 'Seis',
-          'H': 'Sete ou mais'}
+          'H': 'Sete\nou\nmais'}
 
 	df = dataset.replace({'QE_I07': di})
 
-	plt.figure(figsize=(12, 8))
+	plt.figure(figsize=(6, 4))
 
 	ax = sns.barplot(x='QE_I07', y='NT_GER', data=df, ci=None, order=[di['A'],
                      di['B'], di['C'], di['D'], di['E'], di['F'], di['G'],
@@ -256,8 +222,6 @@ escolarizacao_pai()
 escolarizacao_pai_ANOVA()
 escolarizacao_mae()
 escolarizacao_mae_ANOVA()
-onde_com_quem_mora()
-onde_com_quem_mora_ANOVA()
 renda_familiar_total()
 renda_familiar_total_ANOVA()
 com_quantas_pessoas_mora()

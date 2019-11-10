@@ -34,7 +34,7 @@ def compare_course_and_socioecon():
 		  'G': 35000.0}
 
 	df = dataset.replace({'CO_GRUPO': di, 'QE_I08': di_2})
-	
+	print(df)
 	order_of_x = [di[21], di[4004], di[5401], di[702], di[1402], di[6002], di[3002]]
 	plt.figure(figsize=(16, 9))
 	
